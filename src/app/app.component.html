@@ -7,4 +7,5 @@
   [breakpoints]="{ '920px': { width: '100%', right: '0', left: '0' } }"
 ></p-toast>
 
+<app-loading *ngIf="isLoading$ | async"></app-loading>
 <router-outlet> </router-outlet>

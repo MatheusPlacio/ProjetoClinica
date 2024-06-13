@@ -4,6 +4,7 @@ import { UserService } from '../../services/user.service';
 import { CookieService } from 'ngx-cookie-service';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { LoadingService } from '../../services/loading.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent {
               private userService: UserService,
               private cookieService: CookieService,
               private messageService: MessageService,
-              private router: Router) {
+              private router: Router,
+              private loadingService: LoadingService) {
 
     this.loginForm = this.formBuilder.group({
         email: ['', [Validators.required, Validators.email, this.emailValidator]],
@@ -49,6 +51,7 @@ export class LoginComponent {
 
   onSubmitLoginForm(): void {
     if (this.loginForm.valid) {
+      this.loadingService.show(); // Mostra o loading
       this.userService.authUser(this.loginForm.value)
         .subscribe({
           next: (response) => {
@@ -64,18 +67,19 @@ export class LoginComponent {
                 life: 4000,
               });
             }
+            this.loadingService.hide(); // Esconde o loading
           },
           error: (err) => {
-            const errors = err.error?.mensagens || ['Erro ao fazer o login!'];
-            errors.forEach((msg: string) => {
-              this.messageService.add({
-                severity: 'error',
-                summary: 'Erro',
-                detail: msg,
-                life: 4000,
-              });
+            // Captura as mensagens de erro do backend e as exibe no toast
+            const errorMessage = err.error?.mensagem || 'Erro ao fazer login!';
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Erro',
+              detail: errorMessage,
+              life: 4000,
             });
             console.log(err);
+            this.loadingService.hide(); // Esconde o loading
           },
         });
     } else {
@@ -90,6 +94,7 @@ export class LoginComponent {
 
   onSubmitCriarContaForm(): void {
     if (this.criarContaForm.valid) {
+      this.loadingService.show(); // Mostra o loading
       this.userService.CriarUsuario(this.criarContaForm.value)
         .subscribe({
           next: (response) => {
@@ -103,6 +108,7 @@ export class LoginComponent {
                 life: 4000,
               });
             }
+            this.loadingService.hide(); // Esconde o loading
           },
           error: (err) => {
             // Captura as mensagens de erro do backend e as exibe no toast
@@ -114,6 +120,7 @@ export class LoginComponent {
               life: 4000,
             });
             console.log(err);
+            this.loadingService.hide(); // Esconde o loading
           },
         });
     } else {
@@ -125,6 +132,5 @@ export class LoginComponent {
       });
     }
   }
-
 
 }

@@ -7,7 +7,7 @@
 
       <div class="p-fluid">
         <div class="login-input">
-          <input type="email" pInputText placeholder="Email" formControlName="email" />
+          <input type="email" pInputText placeholder="Email" formControlName="email"/>
           <div *ngIf="loginForm.get('email')?.errors?.['invalidEmail'] && loginForm.get('email')?.value" class="error-message">
             Email inválido
           </div>

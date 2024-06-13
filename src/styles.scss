@@ -1,1 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Estilo para o p-toast */
+.p-toast {
+  .p-toast-message {
+    background-color: #ffffff !important; /* Fundo branco */
+    color: #333333 !important;            /* Texto preto */
+    border-radius: 8px !important;        /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important; /* Sombra suave */
+    padding: 1rem !important;             /* Padding interno */
+    border-left: 5px solid transparent !important; /* Borda esquerda colorida */
+
+    &.p-toast-message-success {
+      background-color: #4caf50 !important; /* Verde para sucesso */
+      color: #ffffff !important;            /* Texto branco */
+      border-left-color: #388e3c !important; /* Borda esquerda verde escura */
+    }
+
+    &.p-toast-message-error {
+      background-color: #f44336 !important; /* Vermelho para erro */
+      color: #ffffff !important;            /* Texto branco */
+      border-left-color: #d32f2f !important; /* Borda esquerda vermelha escura */
+    }
+
+    &.p-toast-message-info {
+      background-color: #2196f3 !important; /* Azul para info */
+      color: #ffffff !important;            /* Texto branco */
+      border-left-color: #1976d2 !important; /* Borda esquerda azul escura */
+    }
+
+    &.p-toast-message-warn {
+      background-color: #ff9800 !important; /* Laranja para aviso */
+      color: #ffffff !important;            /* Texto branco */
+      border-left-color: #f57c00 !important; /* Borda esquerda laranja escura */
+    }
+
+    .p-toast-icon-close {
+      color: #d32f2f !important;            /* Ícone de fechar branco */
+    }
+  }
+}
+

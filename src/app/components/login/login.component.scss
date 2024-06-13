@@ -1,0 +1,84 @@
+.grid {
+  background-image: url('../../../assets/Clinica.jpg') !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 100%;
+}
+
+.login-header {
+  text-align: center;
+  color: #4169E1;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.login-subheader {
+  text-align: center;
+  color: #4169E1;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.login-input {
+  margin-bottom: 1rem;
+}
+
+.login-input.error input {
+  border: 1px solid red;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.login-button {
+  width: 100%;
+  background-color: #4169E1;
+  color: #fff;
+  border: none;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #4169E1;
+}
+
+.toggle-link {
+  text-align: center;
+  display: block;
+  margin-top: 1rem;
+  color: #4169E1;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.toggle-link:hover {
+  color: #4169E1;
+}
+
+input[pInputText] {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}

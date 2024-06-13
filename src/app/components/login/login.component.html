@@ -1,0 +1,58 @@
+<div class="grid">
+  <div class="login-container">
+    <!-- LOGIN -->
+    <form *ngIf="loginCard" [formGroup]="loginForm" (ngSubmit)="onSubmitLoginForm()">
+      <div class="login-header">Login</div>
+      <div class="login-subheader">Faça login com sua conta existente!</div>
+
+      <div class="p-fluid">
+        <div class="login-input">
+          <input type="email" pInputText placeholder="Email" formControlName="email" />
+          <div *ngIf="loginForm.get('email')?.errors?.['invalidEmail'] && loginForm.get('email')?.value" class="error-message">
+            Email inválido
+          </div>
+        </div>
+        <div class="login-input">
+          <input type="password" pInputText placeholder="Senha" formControlName="password" />
+        </div>
+        <div>
+          <button type="submit" class="login-button" [disabled]="!loginForm.valid">Login</button>
+        </div>
+      </div>
+      <span class="toggle-link" (click)="loginCard = !loginCard">Criar Conta</span>
+    </form>
+
+    <!-- CRIAR CONTA -->
+    <form *ngIf="!loginCard" [formGroup]="criarContaForm" (ngSubmit)="onSubmitCriarContaForm()">
+      <div class="login-header">Criar conta</div>
+      <div class="login-subheader">Crie já sua conta gratuita!</div>
+
+      <div class="p-fluid">
+        <div class="login-input">
+          <input type="text" pInputText placeholder="Nome" formControlName="name" />
+        </div>
+        <div class="login-input">
+          <input type="email" pInputText placeholder="Email" formControlName="email" />
+          <div *ngIf="criarContaForm.get('email')?.errors?.['invalidEmail'] && criarContaForm.get('email')?.value" class="error-message">
+            Email inválido
+          </div>
+        </div>
+        <div class="login-input" [ngClass]="{'error': criarContaForm.hasError('mismatch') && criarContaForm.get('password')?.touched}">
+          <input type="password" pInputText placeholder="Senha" formControlName="password" />
+        </div>
+        <div class="login-input" [ngClass]="{'error': criarContaForm.hasError('mismatch') && criarContaForm.get('confirmPassword')?.touched}">
+          <input type="password" pInputText placeholder="Confirmar Senha" formControlName="confirmPassword" />
+          <div *ngIf="criarContaForm.hasError('mismatch') && criarContaForm.get('confirmPassword')?.value" class="error-message">
+            As senhas não coincidem
+          </div>
+        </div>
+        <div>
+          <button type="submit" class="login-button" [disabled]="!criarContaForm.valid">Criar conta</button>
+        </div>
+      </div>
+      <span class="toggle-link" (click)="loginCard = !loginCard">Fazer login</span>
+    </form>
+  </div>
+</div>
+
+

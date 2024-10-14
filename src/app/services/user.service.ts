@@ -19,7 +19,7 @@ interface DecodedToken {
 })
 
 export class UserService {
-  private url = environments.API_URL;
+  private url = environments.API_AUT;
 
   constructor(private http: HttpClient, private cookie: CookieService) { }
 

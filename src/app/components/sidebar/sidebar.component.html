@@ -1,52 +1,47 @@
-<mat-sidenav-container class="example-container">
-  <mat-sidenav #sidenav mode="side" opened>
-    <mat-toolbar color="primary" style="background-color: #1e53a8;">{{this.userName}}</mat-toolbar>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="side" opened class="custom-sidenav">
+    <mat-toolbar color="primary" class="sidebar-toolbar">
+      <span>{{ userName }}</span>
+    </mat-toolbar>
+
     <mat-nav-list>
-      <a mat-list-item routerLink="/dashboard">
-           <mat-icon matListIcon>dashboard</mat-icon>
-           <span>Dashboard</span>
-         </a>
-         <mat-list-item (click)="toggleMenu('cadastros')">
-           <mat-icon matListIcon>folder</mat-icon>
-           <span>Cadastros</span>
-           <mat-icon class="expand-icon">expand_more</mat-icon>
-         </mat-list-item>
-         <div *ngIf="menus['cadastros']" class="submenu">
-           <mat-nav-list>
-             <a mat-list-item routerLink="/pacientes">
-               <mat-icon matListIcon>person</mat-icon>
-               <span>Pacientes</span>
-             </a>
-           </mat-nav-list>
-         </div>
-         <mat-list-item (click)="toggleMenu('agenda')">
-           <mat-icon matListIcon>calendar_today</mat-icon>
-           <span>Agenda</span>
-           <mat-icon class="expand-icon">expand_more</mat-icon>
-         </mat-list-item>
-         <div *ngIf="menus['agenda']" class="submenu">
-           <mat-nav-list>
-             <a mat-list-item routerLink="/agendamentos">
-               <mat-icon matListIcon>event</mat-icon>
-               <span>Agendamentos</span>
-             </a>
-             <a mat-list-item routerLink="/cancelamentos">
-               <mat-icon matListIcon>event_busy</mat-icon>
-               <span>Cancelamentos</span>
-             </a>
-           </mat-nav-list>
-         </div>
-       </mat-nav-list>
+      <a mat-list-item routerLink="/dashboard" class="menu-item">
+        <mat-icon matListIcon>dashboard</mat-icon>
+        <span>Dashboard</span>
+      </a>
+
+      <mat-list-item class="menu-item" (click)="toggleMenu('cadastros')">
+        <mat-icon matListIcon>assignment</mat-icon>
+        <span>Cadastros</span>
+        <mat-icon class="expand-icon" [class.expanded]="menus['cadastros']">expand_more</mat-icon>
+      </mat-list-item>
+
+      <div *ngIf="menus['cadastros']" class="submenu">
+        <mat-nav-list>
+          <a mat-list-item routerLink="/clientes" class="submenu-item">
+            <mat-icon matListIcon>person</mat-icon>
+            <span>Clientes</span>
+          </a>
+          <a mat-list-item routerLink="/fornecedor" class="submenu-item">
+            <mat-icon matListIcon>business</mat-icon>
+            <span>Fornecedor</span>
+          </a>
+        </mat-nav-list>
+      </div>
+    </mat-nav-list>
+
     <mat-divider></mat-divider>
+
     <div class="logout">
-      <button mat-button (click)="logout()">
+      <button mat-button (click)="logout()" class="logout-button">
         <mat-icon>logout</mat-icon>
-        Logout
+        <span>Logout</span>
       </button>
     </div>
   </mat-sidenav>
+
   <mat-sidenav-content>
-    <mat-toolbar color="primary" style="background-color: #1e53a8;">
+    <mat-toolbar color="primary">
       <button mat-icon-button (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
@@ -55,6 +50,5 @@
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
+
 </mat-sidenav-container>
-
-

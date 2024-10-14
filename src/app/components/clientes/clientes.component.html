@@ -1,0 +1,48 @@
+<mat-card class="clientes-card">
+  <mat-card-title>Cadastro de Clientes</mat-card-title>
+
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!-- Nome Column -->
+    <ng-container matColumnDef="nome">
+      <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+      <mat-cell *matCellDef="let cliente"> {{cliente.nome}} </mat-cell>
+    </ng-container>
+
+    <!-- Documento Column -->
+    <ng-container matColumnDef="documento">
+      <mat-header-cell *matHeaderCellDef> Documento </mat-header-cell>
+      <mat-cell *matCellDef="let cliente"> {{cliente.documento}} </mat-cell>
+    </ng-container>
+
+    <!-- Tipo de Pessoa Column -->
+    <ng-container matColumnDef="tipoPessoa">
+      <mat-header-cell *matHeaderCellDef> Tipo de Pessoa </mat-header-cell>
+      <mat-cell *matCellDef="let cliente"> {{cliente.tipoPessoa}} </mat-cell>
+    </ng-container>
+
+    <!-- Ações Column -->
+    <ng-container matColumnDef="acoes">
+      <mat-header-cell *matHeaderCellDef> Ações </mat-header-cell>
+      <mat-cell *matCellDef="let cliente">
+        <button mat-icon-button color="primary" (click)="editarCliente(cliente)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="excluirCliente(cliente)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Header and Row Definitions -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <!-- Paginação -->
+  <mat-paginator [length]="dataSource.data.length"
+                 [pageSize]="5"
+                 [pageSizeOptions]="[5, 10, 25]"
+                 showFirstLastButtons>
+  </mat-paginator>
+</mat-card>

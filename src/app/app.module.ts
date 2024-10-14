@@ -25,6 +25,11 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoadingService } from './services/loading.service';
+import { ClientesComponent } from './components/clientes/clientes.component';
+
+import { MatTableModule } from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -32,12 +37,13 @@ import { LoadingService } from './services/loading.service';
     LoginComponent,
     DashboardComponent,
     SidebarComponent,
-    LoadingComponent
+    LoadingComponent,
+    ClientesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule, // Ensure this is imported
+    BrowserAnimationsModule,
     CardModule,
     InputTextModule,
     ButtonModule,
@@ -46,11 +52,14 @@ import { LoadingService } from './services/loading.service';
     HttpClientModule,
     MatButtonModule,
     MatButtonModule,
+    MatTableModule,
+    MatCardModule,
     MatIconModule,
     MatListModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatPaginatorModule
   ],
   providers: [CookieService, MessageService, LoadingService],
   bootstrap: [AppComponent]

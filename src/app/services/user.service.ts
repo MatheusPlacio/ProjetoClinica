@@ -17,6 +17,7 @@ interface DecodedToken {
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserService {
   private url = environments.API_URL;
 
@@ -48,5 +49,5 @@ export class UserService {
     }
     return null;
   }
-  
+
 }

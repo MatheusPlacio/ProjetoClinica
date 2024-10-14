@@ -1,21 +1,133 @@
-.example-container {
-  height: 100%;
-}
-
+/* Sidebar */
 mat-sidenav {
-  width: 250px;
+  width: 260px;
+  background-color: #1f2d3d; /* Fundo escuro e profundo para o sidebar */
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3); /* Sombra mais destacada */
 }
 
 mat-sidenav-container {
   height: 100vh;
+  background-color: #ffffff; /* Fundo branco */
 }
 
+/* Botão de logout */
 .logout {
   padding: 16px;
   position: absolute;
   bottom: 0;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
 }
 
-.content {
-  padding: 16px;
+.logout button {
+  width: 100%;
+  background-color: #42A5F5; /* Azul claro para o botão */
+  color: white;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.logout button:hover {
+  background-color: #1E88E5; /* Azul mais escuro no hover */
+  transform: scale(1.05); /* Pequeno efeito de crescimento no hover */
+}
+
+/* Itens do menu */
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  border-radius: 10px;
+  margin: 8px 0;
+  background-color: #263238; /* Fundo cinza-escuro elegante */
+  color: #ECEFF1; /* Texto claro e suave */
+  font-weight: 500;
+  font-size: 16px;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Sombra suave e elegante */
+}
+
+.menu-item:hover {
+  background-color: #37474F; /* Cor ao passar o mouse */
+  color: #ffffff; /* Texto branco no hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); /* Sombra mais intensa no hover */
+}
+
+.menu-item.active {
+  background-color: #4FC3F7; /* Azul para o item ativo */
+  color: white;
+}
+
+.menu-item mat-icon {
+  margin-right: 12px;
+  color: #90A4AE; /* Ícones em tom cinza claro */
+}
+
+.menu-item.active mat-icon {
+  color: white; /* Ícone branco para o item ativo */
+}
+
+/* Submenus */
+.submenu {
+  padding-left: 28px;
+  color: #B0BEC5; /* Cinza claro para o texto dos submenus */
+}
+
+.submenu-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 20px;
+  border-radius: 6px;
+  margin: 4px 0;
+  font-size: 15px;
+  color: #CFD8DC; /* Texto claro no submenu */
+  transition: background-color 0.3s ease;
+}
+
+.submenu-item:hover {
+  background-color: #37474F; /* Efeito hover para submenu */
+  color: #ffffff; /* Texto branco no hover */
+}
+
+/* Estilo da navbar */
+.mat-toolbar {
+  background-color: #37474F; /* Azul-escuro elegante para a navbar */
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra na navbar */
+}
+
+.mat-toolbar span {
+  font-size: 20px;
+  font-weight: 700;
+  margin-left: 16px;
+  letter-spacing: 1px; /* Maior destaque no título */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  mat-sidenav {
+    width: 220px; /* Sidebar um pouco menor para telas pequenas */
+  }
+
+  .menu-item {
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+
+  .logout button {
+    padding: 10px;
+  }
+
+  .mat-toolbar {
+    font-size: 18px;
+  }
 }

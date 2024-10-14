@@ -1,7 +1,40 @@
-/* You can add global styles to this file, and also import other style files */
+/* Primeira parte: definições de tema do Angular Material */
+@use '@angular/material' as mat;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@include mat.core();
+
+// Paletas para o tema escuro
+$app-primary-dark: mat.define-palette(mat.$blue-grey-palette, 500); // Cor #455A64 para tema escuro
+$app-accent-dark: mat.define-palette(mat.$amber-palette, A200);
+$app-warn-dark: mat.define-palette(mat.$red-palette);
+
+$dark-theme: mat.define-dark-theme((
+  color: (
+    primary: $app-primary-dark,
+    accent: $app-accent-dark,
+    warn: $app-warn-dark,
+  )
+));
+
+
+// Definição do tema escuro
+.dark-theme {
+  @include mat.all-component-themes($dark-theme);
+  background-color: #303030;
+  color: #ffffff;
+}
+
+
+@include mat.all-component-themes($dark-theme);
+
+/* Segunda parte: seus estilos globais e personalizados */
+html, body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 /* Estilo para o p-toast */
 .p-toast {
@@ -38,8 +71,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     }
 
     .p-toast-icon-close {
-      color: #d32f2f !important;            /* Ícone de fechar branco */
+      color: #d32f2f !important;            /* Ícone de fechar vermelho escuro */
     }
   }
 }
-

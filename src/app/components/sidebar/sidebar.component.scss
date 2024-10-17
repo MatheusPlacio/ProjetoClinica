@@ -7,7 +7,6 @@ mat-sidenav {
 
 mat-sidenav-container {
   height: 100vh;
-  background-color: #ffffff; /* Fundo branco */
 }
 
 /* Botão de logout */
@@ -73,23 +72,6 @@ mat-sidenav-container {
   color: white; /* Ícone branco para o item ativo */
 }
 
-/* Submenus */
-.submenu {
-  padding-left: 28px;
-  color: #B0BEC5; /* Cinza claro para o texto dos submenus */
-}
-
-.submenu-item {
-  display: flex;
-  align-items: center;
-  padding: 8px 20px;
-  border-radius: 6px;
-  margin: 4px 0;
-  font-size: 15px;
-  color: #CFD8DC; /* Texto claro no submenu */
-  transition: background-color 0.3s ease;
-}
-
 .submenu-item:hover {
   background-color: #37474F; /* Efeito hover para submenu */
   color: #ffffff; /* Texto branco no hover */
@@ -105,12 +87,6 @@ mat-sidenav-container {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra na navbar */
 }
 
-.mat-toolbar span {
-  font-size: 20px;
-  font-weight: 700;
-  margin-left: 16px;
-  letter-spacing: 1px; /* Maior destaque no título */
-}
 
 /* Responsividade */
 @media (max-width: 768px) {
@@ -118,16 +94,4 @@ mat-sidenav-container {
     width: 220px; /* Sidebar um pouco menor para telas pequenas */
   }
 
-  .menu-item {
-    font-size: 14px;
-    padding: 10px 16px;
-  }
-
-  .logout button {
-    padding: 10px;
-  }
-
-  .mat-toolbar {
-    font-size: 18px;
-  }
 }

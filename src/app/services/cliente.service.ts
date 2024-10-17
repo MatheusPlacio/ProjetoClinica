@@ -17,4 +17,8 @@ export class ClienteService {
     return this.http.get<Cliente[]>(`${this.url}Clientes/GetAllClientes`);
   }
 
+  addCliente(cliente: Cliente): Observable<any> {
+    return this.http.post(`${this.url}Clientes/AddCliente`, cliente);
+  }
+  
 }

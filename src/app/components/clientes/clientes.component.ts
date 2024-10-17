@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog'; // Importa MatDialog
 import { ClienteService } from '../../services/cliente.service';
 import { MessageService } from 'primeng/api';
+import { NovoClienteComponent } from '../../components/clientes/novo-cliente/novo-cliente.component'
 
 // Interface para o modelo de cliente
 interface Cliente {
@@ -16,7 +18,6 @@ interface Cliente {
   templateUrl: './clientes.component.html',
   styleUrls: ['./clientes.component.scss']
 })
-
 export class ClientesComponent implements OnInit, AfterViewInit {
 
   // Colunas da tabela
@@ -28,14 +29,15 @@ export class ClientesComponent implements OnInit, AfterViewInit {
   // Referência ao paginador
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private clienteService: ClienteService,
-              private messageService: MessageService
+  constructor(
+    private clienteService: ClienteService,
+    private messageService: MessageService,
+    private dialog: MatDialog // Injete o MatDialog
   ) {}
 
   // Inicialização da tabela com dados
   ngOnInit() {
-    // Chame o serviço para obter os clientes da API
-    this.GetClientes();
+    this.GetClientes(); // Obtém os clientes ao iniciar o componente
   }
 
   // Configuração do paginador após a view ser carregada
@@ -43,34 +45,65 @@ export class ClientesComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  // Lógica para edição de cliente
-  editarCliente(cliente: Cliente) {
-    console.log('Editar cliente:', cliente);
-    // Adicione aqui a lógica para editar o cliente
+  // Abre a modal para adicionar um novo cliente
+  abrirModalNovoCliente() {
+    const dialogRef = this.dialog.open(NovoClienteComponent, {
+      width: '500px'
+    });
+
+    dialogRef.afterClosed().subscribe((result: Cliente | undefined) => {
+      if (result) {
+        // Verifica se todos os campos obrigatórios foram preenchidos
+        if (result.nome && result.documento && result.tipoPessoa) {
+          this.clienteService.addCliente(result).subscribe(
+            () => {
+              this.GetClientes(); // Atualiza a lista de clientes
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Sucesso',
+                detail: 'Cliente adicionado com sucesso!',
+                life: 3000
+              });
+            },
+            (error) => {
+              this.messageService.add({
+                severity: 'error',
+                summary: 'Erro',
+                detail: 'Erro ao adicionar cliente!',
+                life: 3000
+              });
+              console.error('Erro ao adicionar cliente:', error);
+            }
+          );
+        } else {
+          this.messageService.add({
+            severity: 'warn',
+            summary: 'Atenção',
+            detail: 'Preencha todos os campos obrigatórios!',
+            life: 3000
+          });
+        }
+      }
+    });
   }
 
-  // Lógica para exclusão de cliente
-  excluirCliente(cliente: Cliente) {
-    console.log('Excluir cliente:', cliente);
-    // Adicione aqui a lógica para excluir o cliente
-  }
 
+  // Método para obter a lista de clientes da API
   GetClientes() {
     this.clienteService.getAllClientes().subscribe(
       (clientes: Cliente[]) => {
         this.dataSource.data = clientes; // Preenche a tabela com os dados da API
       },
-      (err: any) => { // Especifica o tipo de err como any
-        const errorMessage = err.error || 'Erro ao obter a lista de clientes!'; // Mensagem mais apropriada
+      (err: any) => {
+        const errorMessage = err.error || 'Erro ao obter a lista de clientes!';
         this.messageService.add({
           severity: 'error',
           summary: 'Erro',
           detail: errorMessage,
           life: 4000,
         });
-        console.log('Erro ao obter clientes:', err.error); // Log para ajudar na depuração
+        console.log('Erro ao obter clientes:', err.error);
       }
     );
   }
-
 }

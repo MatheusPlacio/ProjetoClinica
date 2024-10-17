@@ -1,0 +1,37 @@
+<mat-dialog-content>
+  <form #clienteForm="ngForm">
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nome</mat-label>
+      <input matInput name="nome" [(ngModel)]="cliente.nome" required />
+      <mat-error *ngIf="clienteForm.controls['nome']?.invalid">
+        Nome é obrigatório
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Documento</mat-label>
+      <input matInput name="documento" [(ngModel)]="cliente.documento" required />
+      <mat-error *ngIf="clienteForm.controls['documento']?.invalid">
+        Documento é obrigatório
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Tipo de Pessoa</mat-label>
+      <mat-select name="tipoPessoa" [(ngModel)]="cliente.tipoPessoa" required>
+        <mat-option value="Física">Física</mat-option>
+        <mat-option value="Jurídica">Jurídica</mat-option>
+      </mat-select>
+      <mat-error *ngIf="clienteForm.controls['tipoPessoa']?.invalid">
+        Selecione um tipo de pessoa
+      </mat-error>
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button mat-raised-button color="primary" [disabled]="clienteForm.invalid" (click)="salvar()">Salvar</button>
+</mat-dialog-actions>

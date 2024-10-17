@@ -1,77 +1,141 @@
-/* Primeira parte: definições de tema do Angular Material */
+/* Importação do tema principal do Angular Material */
 @use '@angular/material' as mat;
 
-@include mat.core();
+/* Paleta de cores customizada */
+$primary-palette: mat.define-palette(mat.$indigo-palette);
+$accent-palette: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$warn-palette: mat.define-palette(mat.$red-palette);
 
-// Paletas para o tema escuro
-$app-primary-dark: mat.define-palette(mat.$blue-grey-palette, 500); // Cor #455A64 para tema escuro
-$app-accent-dark: mat.define-palette(mat.$amber-palette, A200);
-$app-warn-dark: mat.define-palette(mat.$red-palette);
-
-$dark-theme: mat.define-dark-theme((
+/* Tema claro */
+$light-theme: mat.define-light-theme((
   color: (
-    primary: $app-primary-dark,
-    accent: $app-accent-dark,
-    warn: $app-warn-dark,
-  )
+    primary: $primary-palette,
+    accent: $accent-palette,
+    warn: $warn-palette,
+  ),
+  typography: mat.define-typography-config()
 ));
 
+/* Tema escuro */
+$dark-theme: mat.define-dark-theme((
+  color: (
+    primary: mat.define-palette(mat.$blue-grey-palette),
+    accent: mat.define-palette(mat.$amber-palette, A200),
+    warn: $warn-palette,
+  ),
+  typography: mat.define-typography-config()
+));
 
-// Definição do tema escuro
+/* Aplicação dos temas */
+@include mat.all-component-themes($light-theme);
+
+/* Adicionando classe para modo escuro */
 .dark-theme {
   @include mat.all-component-themes($dark-theme);
   background-color: #303030;
-  color: #ffffff;
+  color: #fff;
 }
 
-
-@include mat.all-component-themes($dark-theme);
-
-/* Segunda parte: seus estilos globais e personalizados */
+/* Estilo global para o body */
 html, body {
   height: 100%;
-}
-body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #f5f5f5; /* Cor de fundo neutra */
 }
 
-/* Estilo para o p-toast */
+/* Estilo global para botões */
+button {
+  border-radius: 4px;
+  text-transform: none; /* Remover texto em maiúsculo */
+}
+
+.menu-item .mdc-list-item__primary-text {
+  color: white !important; /* Garante que o texto seja branco */
+}
+
+.submenu-item .mdc-list-item__primary-text {
+  color: white !important; /* Garante que o texto seja branco */
+}
+
+
+/* Estilo para contêiner principal */
+.container {
+  margin: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo global para mat-dialog (modais) */
+.mat-dialog-container {
+  padding: 0;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); /* Sombra suave */
+  overflow: hidden; /* Prevenir overflow */
+}
+
+/* Customização das mensagens de erro */
+.mat-error {
+  color: #d32f2f; /* Vermelho para erro */
+  font-size: 0.875rem;
+}
+
+/* Ajuste de campos de entrada */
+mat-form-field {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+/* Customização do scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #bdbdbd;
+  border-radius: 4px;
+}
+
+/* Estilo global para toast (mensagens) */
 .p-toast {
   .p-toast-message {
-    background-color: #ffffff !important; /* Fundo branco */
-    color: #333333 !important;            /* Texto preto */
-    border-radius: 8px !important;        /* Bordas arredondadas */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important; /* Sombra suave */
-    padding: 1rem !important;             /* Padding interno */
-    border-left: 5px solid transparent !important; /* Borda esquerda colorida */
+    background-color: #fff !important;
+    color: #333 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
 
     &.p-toast-message-success {
-      background-color: #4caf50 !important; /* Verde para sucesso */
-      color: #ffffff !important;            /* Texto branco */
-      border-left-color: #388e3c !important; /* Borda esquerda verde escura */
+      background-color: #4caf50 !important;
+      color: #fff !important;
     }
 
     &.p-toast-message-error {
-      background-color: #f44336 !important; /* Vermelho para erro */
-      color: #ffffff !important;            /* Texto branco */
-      border-left-color: #d32f2f !important; /* Borda esquerda vermelha escura */
+      background-color: #f44336 !important;
+      color: #fff !important;
     }
 
     &.p-toast-message-info {
-      background-color: #2196f3 !important; /* Azul para info */
-      color: #ffffff !important;            /* Texto branco */
-      border-left-color: #1976d2 !important; /* Borda esquerda azul escura */
+      background-color: #2196f3 !important;
+      color: #fff !important;
     }
 
     &.p-toast-message-warn {
-      background-color: #ff9800 !important; /* Laranja para aviso */
-      color: #ffffff !important;            /* Texto branco */
-      border-left-color: #f57c00 !important; /* Borda esquerda laranja escura */
+      background-color: #ff9800 !important;
+      color: #fff !important;
     }
 
     .p-toast-icon-close {
-      color: #d32f2f !important;            /* Ícone de fechar vermelho escuro */
+      color: #d32f2f !important;
     }
+  }
+}
+
+/* Media queries para responsividade */
+@media (max-width: 600px) {
+  .container {
+    margin: 10px;
+    padding: 15px;
   }
 }

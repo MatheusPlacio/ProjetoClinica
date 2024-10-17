@@ -16,7 +16,7 @@ import { MessageService } from 'primeng/api';
 
 import { CookieService } from 'ngx-cookie-service';
 import { MatButtonModule } from '@angular/material/button';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { LoginComponent } from './components/login/login.component';
@@ -30,6 +30,11 @@ import { ClientesComponent } from './components/clientes/clientes.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
+import { NovoClienteComponent } from './components/clientes/novo-cliente/novo-cliente.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -38,7 +43,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     DashboardComponent,
     SidebarComponent,
     LoadingComponent,
-    ClientesComponent
+    ClientesComponent,
+    NovoClienteComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +65,12 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatSidenavModule,
     MatToolbarModule,
     MatProgressSpinnerModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSelectModule,
+    MatDialogModule,
+    FormsModule,
+    MatInputModule,
+    MatFormFieldModule
   ],
   providers: [CookieService, MessageService, LoadingService],
   bootstrap: [AppComponent]
